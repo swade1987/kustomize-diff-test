@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+namespace: test-helm
+helmCharts:
+  - name: redis
+    repo: https://charts.bitnami.com/bitnami
+    version: 17.3.14
+    releaseName: redis
+    namespace: test-helm
+    includeCRDs: false
+    valuesInline:
+      architecture: standalone
+      auth:
+        enabled: false
+configMapGenerator:
+  - name: app-config
+    behavior: merge
+    literals:
+      - ENV=overlay-with-helm
