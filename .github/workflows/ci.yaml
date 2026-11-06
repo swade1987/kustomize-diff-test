@@ -19,7 +19,7 @@ jobs:
         root_dir: "./kustomize"
         max_depth: "2"
     - id: comment
-      uses: actions/github-script@v7.0.1
+      uses: actions/github-script@v9.0.0
       env:
         OUTPUT: ${{ steps.kustomize-diff.outputs.diff }}
       with:
